@@ -27,4 +27,18 @@ class Navigators {
         .pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
     Navigator.pushNamed(context, "/provider");
   }
+
+  ///Redux
+  static void goToRedux(BuildContext context) {
+    /*Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
+    Navigator.pushNamed(context, "/redux");
+  }
+
+  ///Redux Thunk
+  static void goToReduxThunk(BuildContext context) {
+    /*Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
+    Navigator.pushNamed(context, "/redux_thunk");
+  }
 }

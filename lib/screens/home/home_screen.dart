@@ -179,6 +179,7 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(user.first_name),
+          backgroundColor: Colors.black,
         )
     );
   }

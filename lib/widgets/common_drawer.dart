@@ -10,6 +10,11 @@ class HomeDrawer extends StatelessWidget {
         children: <Widget>[
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(
+              image: new DecorationImage(
+                  image: NetworkImage('https://static.vecteezy.com/system/resources/previews/000/257/814/non_2x/vector-vintage-background.jpg'),
+                  fit: BoxFit.cover,
+              ),
+
               color: Colors.black,
             ),
             accountName: Text(
@@ -38,8 +43,12 @@ class HomeDrawer extends StatelessWidget {
             ),
           ),
           new ListTile(
+            onTap: (){
+              ///Redux
+              Navigators.goToRedux(context);
+            },
             title: Text(
-              "Team",
+              "Redux",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0),
             ),
             leading: Icon(
@@ -48,8 +57,12 @@ class HomeDrawer extends StatelessWidget {
             ),
           ),
           new ListTile(
+            onTap: (){
+              ///Redux Thunk
+              Navigators.goToReduxThunk(context);
+            },
             title: Text(
-              "Chat",
+              "Redux thunk",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0),
             ),
             leading: Icon(

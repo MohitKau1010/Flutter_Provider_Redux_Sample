@@ -12,25 +12,38 @@ class EligiblityScreen extends StatelessWidget {
         create: (context) => EligiblityScreenProvider(),
         child: Builder(builder: (context) {
           return Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.black,
+              title: Text("Provider State"),
+              actions: <Widget>[
+                SizedBox(
+                  width: 5.0,
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.more_vert),
+                ),
+              ],
+            ),
             body: Container(
               padding: EdgeInsets.all(16),
               child: Form(child: Consumer<EligiblityScreenProvider>(
                 builder: (context, provider, child) {
                   return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       Container(
                         decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-
+                            shape: BoxShape.rectangle,
                             //if isEligible is null then set orange color else if it is true then set green else red
                             color: (provider.isEligible == null)
                                 ? Colors.orangeAccent
                                 : provider.isEligible
                                     ? Colors.green
                                     : Colors.redAccent),
-                        height: 50,
-                        width: 50,
+                        height: 150,
+                        width: 380,
                       ),
                       SizedBox(
                         height: 16,
