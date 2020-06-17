@@ -1,6 +1,6 @@
 class Constants {
   static const String name = "samsung";
-  static const String text = "World's No. 1 Brand";
+  static const String text = "It’s free and open source.";
 
   static const String user_name = 'name';
   static const String user_password = 'password';

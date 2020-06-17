@@ -123,8 +123,8 @@ class HomeScreen extends StatelessWidget {
                               backgroundImage:
                                   NetworkImage(snapshot.data[index].avatar),
                             ),
-                            title: Text(snapshot.data[index].first_name),
-                            subtitle: Text(snapshot.data[index].email),
+                            title: Text(snapshot.data[index].first_name,style: TextStyle(fontFamily: "Bal"),),
+                            subtitle: Text(snapshot.data[index].email,style: TextStyle(fontFamily: "Bal"),),
                             onTap: () {
                               Navigator.push(
                                   context,

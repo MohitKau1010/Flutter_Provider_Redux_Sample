@@ -19,9 +19,11 @@ class HomeDrawer extends StatelessWidget {
             ),
             accountName: Text(
               "Mohit Kaushik",
+              style: TextStyle(fontFamily: "Bal"),
             ),
             accountEmail: Text(
               "mohit@infostride.com",
+              style: TextStyle(fontFamily: "Bal"),
             ),
             currentAccountPicture: new CircleAvatar(
               backgroundImage: new NetworkImage(
@@ -35,7 +37,7 @@ class HomeDrawer extends StatelessWidget {
             },
             title: Text(
               "Provider State",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0),
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0,fontFamily: "Bal"),
             ),
             leading: Icon(
               Icons.person,
@@ -49,7 +51,7 @@ class HomeDrawer extends StatelessWidget {
             },
             title: Text(
               "Redux",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0),
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0,fontFamily: "Bal"),
             ),
             leading: Icon(
               Icons.group,
@@ -63,7 +65,7 @@ class HomeDrawer extends StatelessWidget {
             },
             title: Text(
               "Redux thunk",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0),
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0,fontFamily: "Bal"),
             ),
             leading: Icon(
               Icons.chat,
@@ -71,9 +73,13 @@ class HomeDrawer extends StatelessWidget {
             ),
           ),
           new ListTile(
+            onTap: (){
+              ///Notes task
+              Navigators.goToNoteList(context);
+            },
             title: Text(
-              "Notifications",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0),
+              "Note List",
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0,fontFamily: "Bal"),
             ),
             leading: Icon(
               Icons.notifications,
@@ -83,7 +89,7 @@ class HomeDrawer extends StatelessWidget {
           new ListTile(
             title: Text(
               "Contacts",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0),
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0,fontFamily: "Bal"),
             ),
             leading: Icon(
               Icons.contacts,
@@ -93,7 +99,7 @@ class HomeDrawer extends StatelessWidget {
           new ListTile(
             title: Text(
               "Messages",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0),
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0,fontFamily: "Bal"),
             ),
             leading: Icon(
               Icons.add_box,
@@ -103,7 +109,7 @@ class HomeDrawer extends StatelessWidget {
           new ListTile(
             title: Text(
               "More",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0),
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0,fontFamily: "Bal"),
             ),
             leading: Icon(
               Icons.add,
@@ -114,7 +120,7 @@ class HomeDrawer extends StatelessWidget {
           new ListTile(
             title: Text(
               "Settings",
-              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0),
+              style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0,fontFamily: "Bal"),
             ),
             leading: Icon(
               Icons.settings,

@@ -41,4 +41,10 @@ class Navigators {
         .pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
     Navigator.pushNamed(context, "/redux_thunk");
   }
+  ///Note List
+  static void goToNoteList(BuildContext context) {
+    /*Navigator.of(context)
+        .pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
+    Navigator.pushNamed(context, "/note");
+  }
 }

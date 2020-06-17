@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:welcomeflutter/screens/state_mang/redux_thunk/artical/actions.dart';
@@ -8,7 +7,6 @@ import 'package:welcomeflutter/screens/state_mang/redux_thunk/store.dart';
 class ReduxThunk extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     Redux.init();
 
     return MaterialApp(
@@ -33,9 +31,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   void _onFetchPostsPressed() {
-    Redux.store.dispatch(fetchPostsAction); ///actions
+    Redux.store.dispatch(fetchPostsAction);
+
+    ///actions
   }
 
   @override
@@ -92,11 +91,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return posts
         .map(
           (post) => ListTile(
-        title: Text(post.title),
-        subtitle: Text(post.body),
-        key: Key(post.id.toString()),
-      ),
-    )
+            title: Text(post.title),
+            subtitle: Text(post.body),
+            key: Key(post.id.toString()),
+          ),
+        )
         .toList();
   }
 }

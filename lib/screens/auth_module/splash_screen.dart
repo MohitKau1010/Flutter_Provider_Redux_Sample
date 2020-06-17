@@ -63,9 +63,13 @@ class _SplashScreenState extends State<SplashScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Image(
-                          image: NetworkImage('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.iconfinder.com%2Ficons%2F4691465%2Fflutter_icon&psig=AOvVaw1h89C75DR1n5XwUNEA1DSl&ust=1592338008299000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCKDx7rzPhOoCFQAAAAAdAAAAABAI'),
-                          ),
+                      SizedBox(height: 50),
+                      Padding(
+                        padding: EdgeInsets.all(60.0),
+                        child: Image(
+                            image: NetworkImage('https://flutter.dev/assets/flutter-lockup-c13da9c9303e26b8d5fc208d2a1fa20c1ef47eb021ecadf27046dea04c0cebf6.png'),
+                            ),
+                      ),
                       Padding(
                         padding: EdgeInsets.only(top: 30),
                       ),
