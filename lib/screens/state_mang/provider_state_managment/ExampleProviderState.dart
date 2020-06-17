@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'EiligiablityScreenProvider.dart';
 
-class EligiblityScreen extends StatelessWidget {
+class ProviderState extends StatelessWidget {
 
   final ageController = TextEditingController();
 

@@ -12,7 +12,7 @@ class ReduxThunk extends StatelessWidget {
     Redux.init();
 
     return MaterialApp(
-      title: 'Redux',
+      title: 'Redux thunk',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primaryColor: Colors.black, accentColor: Colors.black),
       home: StoreProvider<AppState>(

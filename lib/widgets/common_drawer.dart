@@ -28,7 +28,7 @@ class HomeDrawer extends StatelessWidget {
                   'https://scontent-del1-1.xx.fbcdn.net/v/t1.0-9/95240835_3691097090965455_5920649517463502848_o.jpg?_nc_cat=100&_nc_sid=dd9801&_nc_ohc=TloDY4q6fK8AX9zt0jn&_nc_ht=scontent-del1-1.xx&oh=baa08a0f6a7580d01ba3991b6c4fed45&oe=5EFDC4A5'),
             ),
           ),
-          new ListTile(
+          ListTile(
             onTap: (){
               ///Provider State screen
               Navigators.goToProviderState(context);
@@ -100,7 +100,6 @@ class HomeDrawer extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          /*Divider(),*/
           new ListTile(
             title: Text(
               "More",
@@ -111,6 +110,7 @@ class HomeDrawer extends StatelessWidget {
               color: Colors.black,
             ),
           ),
+          /*Divider(),*/
           new ListTile(
             title: Text(
               "Settings",
@@ -121,8 +121,6 @@ class HomeDrawer extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          /*Divider(),*/
-          //MyAboutTile()
         ],
       ),
     );

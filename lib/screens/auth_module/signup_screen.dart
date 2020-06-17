@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:welcomeflutter/utils/constants.dart';
 import 'package:welcomeflutter/utils/navigators.dart';
@@ -13,6 +14,8 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  List<Color> _colors = [Colors.orange, Colors.pink];
+  List<double> _stops = [0.0, 0.9];
   @override
   void initState() {
     // TODO: implement initState
@@ -34,11 +37,18 @@ class _SignupScreenState extends State<SignupScreen> {
         onWillPop: _onBackPressed,
         child: Scaffold(
           body: Stack(fit: StackFit.expand, children: <Widget>[
-            Image(
-              image: NetworkImage(
-                  'https://i.pinimg.com/564x/53/5d/5a/535d5a3cb54b463057fc76c44ef56393.jpg'),
-              fit: BoxFit.fill,
-            ),
+            Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: _colors,
+                    stops: _stops,
+                  )
+              ),),
+            /*Image(image: NetworkImage('https://i.pinimg.com/564x/53/5d/5a/535d5a3cb54b463057fc76c44ef56393.jpg'),
+                  fit: BoxFit.fill,
+                ),*/
             Padding(
                 padding: EdgeInsets.all(10),
                 child: ListView(
@@ -48,8 +58,8 @@ class _SignupScreenState extends State<SignupScreen> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          'Sign up',
-                          style: TextStyle(fontSize: 20),
+                          'REGISTER',
+                          style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold,fontFamily: "Bal"),
                         )),
                     Container(
                       padding: EdgeInsets.all(10),
@@ -57,7 +67,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         controller: nameController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(),
-                          labelText: 'User Name',
+                          labelText: 'User Name'
                         ),
                       ),
                     ),
@@ -78,7 +88,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         //forgot password screen
                       },
                       textColor: Colors.black,
-                      child: Text('Forgot Password'),
+                      child: Text('Forgot Password',style: TextStyle(fontFamily: "Bal")),
                     ),
                     Container(
                         height: 50,
@@ -86,7 +96,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: RaisedButton(
                           textColor: Colors.white,
                           color: Colors.black,
-                          child: Text('Register'),
+                          child: Text('Register',style: TextStyle(fontFamily: "Bal")),
                           onPressed: () {
                             //print(nameController.text);
                             //print(passwordController.text);
@@ -94,22 +104,28 @@ class _SignupScreenState extends State<SignupScreen> {
                                 Validations().isEmail(nameController.text);
                             if (isValid) {
                               _sharedPref(nameController.text,
-                                  passwordController.text, true);
-                              Navigators.goToHome(context);
+                                  passwordController.text, false);
+                              Navigators.goToLogin(context);
                             } else {
-                              print('Email is not valid');
+                              Fluttertoast.showToast(
+                                  msg: 'Email is not valid',
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.white
+                              );
                             }
                           },
                         )),
                     Container(
                         child: Row(
                       children: <Widget>[
-                        Text('Does have account?'),
+                        Text('Does have account?',style: TextStyle(fontFamily: "Bal")),
                         FlatButton(
                           textColor: Colors.black,
                           child: Text(
                             'Sign in',
-                            style: TextStyle(fontSize: 20),
+                            style: TextStyle(fontSize: 20,fontFamily: "Bal"),
                           ),
                           onPressed: () {
                             //signup screen

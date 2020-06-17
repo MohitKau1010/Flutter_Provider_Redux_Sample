@@ -1,14 +1,17 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:http/http.dart' as http;
-import 'package:welcomeflutter/models/Data.dart';
 import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:welcomeflutter/models/Data.dart';
 import 'package:welcomeflutter/models/UserData.dart';
+import 'package:welcomeflutter/utils/constants.dart';
 import 'package:welcomeflutter/widgets/common_drawer.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
-
   ///hit api
   Future<List<Data>> _getUsers() async {
     var data = await http.get("https://reqres.in/api/users?page=2");
@@ -17,8 +20,13 @@ class HomeScreen extends StatelessWidget {
     //var jsonData = json.decode(jsonDataObject['data']);
     UserData.fromJson(json.decode(data.body));
     List<Data> dataItem = [];
-    for(var u in UserData.fromJson(json.decode(data.body)).data){
-      Data user = Data(avatar: u.avatar,email: u.email,first_name: u.first_name,id: u.id,last_name: u.last_name);
+    for (var u in UserData.fromJson(json.decode(data.body)).data) {
+      Data user = Data(
+          avatar: u.avatar,
+          email: u.email,
+          first_name: u.first_name,
+          id: u.id,
+          last_name: u.last_name);
       dataItem.add(user);
     }
     print(dataItem.length);
@@ -38,6 +46,7 @@ class HomeScreen extends StatelessWidget {
     'https://bootdey.com/img/Content/avatar/avatar7.png',
     'https://bootdey.com/img/Content/avatar/avatar7.png'
   ];
+
   ///static list for background color
   final List<int> colorCodes = <int>[
     600,
@@ -51,6 +60,7 @@ class HomeScreen extends StatelessWidget {
     200,
     300
   ];
+
   //Column1
 
   //region BodyData
@@ -63,7 +73,8 @@ class HomeScreen extends StatelessWidget {
             Container(
               child: Image(
                 fit: BoxFit.fill,
-                image: NetworkImage('https://www.uniquefbcovers.com/download/Clouds%20HD%20Fb%20Cover.jpg'),
+                image: NetworkImage(
+                    'https://www.uniquefbcovers.com/download/Clouds%20HD%20Fb%20Cover.jpg'),
               ),
               padding: EdgeInsets.all(0),
               decoration: new BoxDecoration(
@@ -72,6 +83,7 @@ class HomeScreen extends StatelessWidget {
                       bottomRight: Radius.circular(0),
                       bottomLeft: Radius.circular(0))),
             ),
+            ///static list implemented
             /*SizedBox(height: 0),
             Container(
                 height: 50,
@@ -95,14 +107,10 @@ class HomeScreen extends StatelessWidget {
             Container(
               child: FutureBuilder(
                 future: _getUsers(),
-                builder: (BuildContext context, AsyncSnapshot snapshot){
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
                   print(snapshot.data);
-                  if(snapshot.data == null){
-                    return Container(
-                        child: Center(
-                            child: Text("Loading...")
-                        )
-                    );
+                  if (snapshot.data == null) {
+                    return Container(child: Center(child: Text("Loading...")));
                   } else {
                     return SizedBox(
                       height: 600,
@@ -111,16 +119,17 @@ class HomeScreen extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
                             leading: CircleAvatar(
-                              backgroundImage: NetworkImage(
-                                  snapshot.data[index].avatar
-                              ),
+                              backgroundImage:
+                                  NetworkImage(snapshot.data[index].avatar),
                             ),
                             title: Text(snapshot.data[index].first_name),
                             subtitle: Text(snapshot.data[index].email),
-                            onTap: (){
-                              Navigator.push(context,
-                                  new MaterialPageRoute(builder: (context) => DetailPage(snapshot.data[index]))
-                              );
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  new MaterialPageRoute(
+                                      builder: (context) =>
+                                          DetailPage(snapshot.data[index])));
                             },
                           );
                         },
@@ -142,15 +151,19 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.black,
-        title: Text("Home Screen"),
+        title: Text("Home Screen",style: TextStyle(fontFamily: "Bal")),
         actions: <Widget>[
-          SizedBox(
-            width: 5.0,
-          ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.more_vert),
-          ),
+          PopupMenuButton<String>(
+            onSelected: _choiceAction(Constants.SignOut,context),
+            itemBuilder: (BuildContext context) {
+              return Constants.choices.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          )
         ],
       ),
       drawer: true ? HomeDrawer() : null,
@@ -165,11 +178,30 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+
+   _choiceAction(String choice,BuildContext context) {
+
+    if (choice == Constants.Settings) {
+      print('Settings');
+    } else if (choice == Constants.Subscribe) {
+      print('Subscribe');
+    } else if (choice == Constants.SignOut) {
+      print('SignOut');
+      /// context not found "how to find cotext here"
+      //Navigator.of(context).pop(true);
+      _signoutUser();
+    }
+  }
+
+  Future<void> _signoutUser() async {
+    ///alert dialog
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool(Constants.is_logged_in, false);
+  }
 }
 
 ///Detail page from list
 class DetailPage extends StatelessWidget {
-
   final Data user;
 
   DetailPage(this.user);
@@ -178,21 +210,20 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text(user.first_name),
-          backgroundColor: Colors.black,
-        )
-    );
+      title: Text(user.first_name),
+      backgroundColor: Colors.black,
+    ));
   }
 }
 
 ///User model
 class User {
   final int id;
-  final String first_name;
-  final String last_name;
+  final String lastName;
+  final String firstName;
   final String email;
   final String avatar;
 
   ///user constructure
-  User(this.id, this.first_name, this.last_name, this.email, this.avatar);
+  User(this.id, this.firstName, this.lastName, this.email, this.avatar);
 }
