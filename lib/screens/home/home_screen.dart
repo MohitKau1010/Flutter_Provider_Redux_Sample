@@ -17,6 +17,7 @@ class HomeScreen extends StatelessWidget {
     var data = await http.get("https://reqres.in/api/users?page=2");
     //Map<String, dynamic> jsonDataObject = jsonDecode(data.body);
     //var name = jsonDataObject['data']['name'];
+
     //var jsonData = json.decode(jsonDataObject['data']);
     UserData.fromJson(json.decode(data.body));
     List<Data> dataItem = [];
