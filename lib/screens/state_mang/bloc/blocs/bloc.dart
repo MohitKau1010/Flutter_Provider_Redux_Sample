@@ -1,40 +1,28 @@
 import 'package:rxdart/rxdart.dart';
-import 'package:welcomeflutter/models/Data.dart';
-import 'package:welcomeflutter/screens/state_mang/bloc/models/Data.dart';
 import 'package:welcomeflutter/screens/state_mang/bloc/models/getList.dart';
 import 'package:welcomeflutter/screens/state_mang/bloc/resources/repository.dart';
 
-class MoviesBloc {
+class UsersBloc {
   final _repository = Repository();
-  final _moviesFetcher = PublishSubject<GetList>();
+  final _usersFetcher = PublishSubject<GetList>();
 
-  Stream<GetList> get allMovies => _moviesFetcher.stream;
+  Stream<GetList> get AllUsers => _usersFetcher.stream;
 
   ///stream for getting the data from the api
 
-  fetchAllMovies() async {
-    /*if (_isDisposed) {
-      return;
-    }*/
-
-    GetList data = await _repository.fetchAllMovies();
-    _moviesFetcher.sink.add(data);
-    //print("object :    $data");
-
-//    ItemModel itemModel = await _repository.fetchAllMovies();
-//    _moviesFetcher.sink.add(itemModel);/// sink is used for adding the data into model.
+  fetchAllUsers() async {
+    GetList data = await _repository.fetchAllUsers();
+    _usersFetcher.sink.add(data);
   }
 
-  bool _isDisposed = false;
-
   dispose() {
-    _moviesFetcher.close();
+    _usersFetcher.drain();
+    _usersFetcher.close();
 
     /// close PublishSubject
-    //_isDisposed = true;
   }
 }
 
-final bloc = MoviesBloc();
+final bloc = UsersBloc();
 
-/// constunter variable for calling the methods.
+///constunter variable for calling the methods.

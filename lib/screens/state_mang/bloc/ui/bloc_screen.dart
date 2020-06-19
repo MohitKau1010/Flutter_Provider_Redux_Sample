@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:welcomeflutter/screens/state_mang/bloc/blocs/bloc.dart';
-import 'package:welcomeflutter/screens/state_mang/bloc/models/Data.dart';
 import 'package:welcomeflutter/screens/state_mang/bloc/models/getList.dart';
 
 class Bloc extends StatefulWidget {
@@ -15,14 +13,14 @@ class BlocState extends State<Bloc> {
   @override
   void initState() {
     super.initState();
-
     ///fetching data from api
-    bloc.fetchAllMovies();
+    bloc.fetchAllUsers();
   }
 
   @override
-  void dispose() {
+  void dispose() async {
     ///release bloc
+    await bloc.AllUsers.drain();
     bloc.dispose();
     super.dispose();
   }
@@ -34,7 +32,7 @@ class BlocState extends State<Bloc> {
         title: Text('Bloc Screen'),
       ),
       body: StreamBuilder(
-        stream: bloc.allMovies,
+        stream: bloc.AllUsers,
         builder: (context, AsyncSnapshot<GetList> snapshot) {
           if (snapshot.hasData) {
             return buildList(snapshot);
@@ -45,8 +43,9 @@ class BlocState extends State<Bloc> {
 
             /// show error massage
           }
-          return Text(snapshot.error.toString());//Center(child: CircularProgressIndicator());
-
+          return Center(
+              child:
+                  CircularProgressIndicator()); //Text(snapshot.error.toString());//
           /// else show loading..
         },
       ),
@@ -62,33 +61,13 @@ class BlocState extends State<Bloc> {
           return GridTile(
             child: InkResponse(
               enableFeedback: true,
-              child: Text('${snapshot.data.data[index].id}'),/*Image.network(
-                '${snapshot.data.data[index].id}',
+              child: Image.network(
+                "${snapshot.data.data[index].avatar}",
                 fit: BoxFit.cover,
-              ),*/
+              ),
               onTap: () {},
-
-              ///=> openDetailPage(snapshot.data, index)
             ),
           );
         });
   }
-
-/*openDetailPage(Data data, int index) {
-    final page = MovieDetailBlocProvider(
-      child: MovieDetail(
-        title: data.results[index].title,
-        posterUrl: data.results[index].backdrop_path,
-        description: data.results[index].overview,
-        releaseDate: data.results[index].release_date,
-        voteAverage: data.results[index].vote_average.toString(),
-        movieId: data.results[index].id,
-      ),
-    );
-    /// navigate next
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return page;
-    }),
-    );
-  }*/
 }

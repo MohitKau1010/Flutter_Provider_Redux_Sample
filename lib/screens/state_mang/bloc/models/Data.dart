@@ -1,29 +1,29 @@
-class Datas {
-    String color;
+class Data {
+    String avatar;
+    String email;
+    String first_name;
     int id;
-    String name;
-    String pantone_value;
-    int year;
+    String last_name;
 
-    Datas({this.color, this.id, this.name, this.pantone_value, this.year});
+    Data({this.avatar, this.email, this.first_name, this.id, this.last_name});
 
-    factory Datas.fromJson(Map<String, dynamic> json) {
-        return Datas(
-            color: json['color'], 
-            id: json['id'], 
-            name: json['name'], 
-            pantone_value: json['pantone_value'], 
-            year: json['year'], 
+    factory Data.fromJson(Map<String, dynamic> json) {
+        return Data(
+            avatar: json['avatar'],
+            email: json['email'],
+            first_name: json['first_name'],
+            id: json['id'],
+            last_name: json['last_name'],
         );
     }
 
     Map<String, dynamic> toJson() {
         final Map<String, dynamic> data = new Map<String, dynamic>();
-        data['color'] = this.color;
+        data['avatar'] = this.avatar;
+        data['email'] = this.email;
+        data['first_name'] = this.first_name;
         data['id'] = this.id;
-        data['name'] = this.name;
-        data['pantone_value'] = this.pantone_value;
-        data['year'] = this.year;
+        data['last_name'] = this.last_name;
         return data;
     }
 }

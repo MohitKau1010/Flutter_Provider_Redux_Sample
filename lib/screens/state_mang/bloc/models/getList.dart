@@ -1,10 +1,10 @@
 
 
-import 'Ad.dart';
-import 'Data.dart';
+import 'package:welcomeflutter/models/Data.dart';
 
+import 'Ad.dart';
 class GetList {
-    List<Datas> data;
+    List<Data> data;
     Ad ad;
     int page;
     int per_page;
@@ -15,7 +15,7 @@ class GetList {
 
     factory GetList.fromJson(Map<String, dynamic> json) {
         return GetList(
-            data: json['data'] != null ? (json['data'] as List).map((i) => Datas.fromJson(i)).toList() : null,
+            data: json['data'] != null ? (json['data'] as List).map((i) => Data.fromJson(i)).toList() : null,
             ad: json['ad'] != null ? Ad.fromJson(json['ad']) : null, 
             page: json['page'], 
             per_page: json['per_page'], 
