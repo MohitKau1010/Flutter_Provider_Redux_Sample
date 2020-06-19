@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:welcomeflutter/utils/constants.dart';
 import 'package:welcomeflutter/utils/navigators.dart';
@@ -14,23 +15,36 @@ class _SplashScreenState extends State<SplashScreen> {
 
   List<Color> _colors = [Colors.orange, Colors.pink];
   List<double> _stops = [0.0, 0.9];
+  SharedPreferences prefs;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _loadsharedpref();
+    SystemChannels.textInput.invokeMethod('TextInput.hide');  //hide keyboard
+    initPref();
+    startTime();
   }
 
-  _loadsharedpref() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      if(prefs.getBool('isloggedin')??false){
-        Timer(Duration(seconds: 3), () => Navigators.goToHome(context));
-      }else{
-        Timer(Duration(seconds: 3), () => Navigators.goToLogin(context));
-      }//splash timer for 3 secounds
-    });
+  void initPref() async {
+     prefs = await SharedPreferences.getInstance();
+  }
+
+  startTime() async {
+    var _duration = new Duration(seconds: 2);                 //splash timer = 2
+    return new Timer(_duration, navigationPage);
+  }
+
+  //navigate to screen based on user shared preference values......
+  void navigationPage()async {
+    bool isloggedin = prefs.getBool('isloggedin');
+    if(isloggedin !=null && isloggedin ){
+      Navigators.goToHome(context);
+      //Keys.navKey.currentState.pushReplacementNamed(Routes.manTabScreen);    //if logged in -> move to home screen
+    }else {
+      Navigators.goToLogin(context);
+      //Keys.navKey.currentState.pushReplacementNamed(Routes.getStartedScreen);      //if not, move to -> login screen
+    }
   }
 
   @override
@@ -104,4 +118,6 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+
+
 }

@@ -23,28 +23,29 @@ class Navigators {
   }
   ///EligiblityScreen
   static void goToProviderState(BuildContext context) {
-    /*Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
+    /*Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
     Navigator.pushNamed(context, "/provider");
   }
 
   ///Redux
   static void goToRedux(BuildContext context) {
-    /*Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
+    /*Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
     Navigator.pushNamed(context, "/redux");
   }
 
   ///Redux Thunk
   static void goToReduxThunk(BuildContext context) {
-    /*Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
+    /*Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
     Navigator.pushNamed(context, "/redux_thunk");
   }
   ///Note List
   static void goToNoteList(BuildContext context) {
-    /*Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
+    /*Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
     Navigator.pushNamed(context, "/note");
+  }
+  //goToBlocScrren
+  static void goToBlocScrren(BuildContext context) {
+    /*Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => EligiblityScreen()));*/
+    Navigator.pushNamed(context, "/bloc");
   }
 }

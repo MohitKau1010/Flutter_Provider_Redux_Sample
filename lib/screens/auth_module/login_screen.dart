@@ -48,6 +48,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 Padding(
                     padding: EdgeInsets.all(10),
                     child: ListView(
+                      /*height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,*/
                       children: <Widget>[
                         SizedBox(height: 110),
                         Container(

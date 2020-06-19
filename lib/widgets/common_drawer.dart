@@ -87,8 +87,12 @@ class HomeDrawer extends StatelessWidget {
             ),
           ),
           new ListTile(
+            onTap: (){
+              ///Bloc task
+              Navigators.goToBlocScrren(context);
+            },
             title: Text(
-              "Contacts",
+              "Bloc",
               style: TextStyle(fontWeight: FontWeight.w700, fontSize: 14.0,fontFamily: "Bal"),
             ),
             leading: Icon(
